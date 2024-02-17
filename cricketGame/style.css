@@ -1,0 +1,29 @@
+body{
+    text-align: center;
+}
+.btn {
+    /* Your existing button styles here */
+    padding: 10px 20px;
+    margin: 5px;
+    cursor: pointer;
+}
+
+.btn {
+    /* Your existing button styles here */
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    align-items: center;
+}
+
+img {
+    max-width: 50px; /* Set the maximum width for the images */
+    max-height: 50px; /* Set the maximum height for the images */
+    margin-bottom: 5px; /* Adjust the margin between the image and text */
+}
+
+.bat-btn {
+    background-color: #ff6600; /* Set the background color for the Bat button */
+    color: white; 
+  
+}

@@ -1,0 +1,106 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Cricket Game</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body bgcolor="skyblue">
+    <h1>Bat Ball Stump Game</h1>
+
+    <button id="batButton" class="btn bat-btn" onclick="
+        let computerChoice = generateComputerChoice();
+        let resultMsg = getResult('Bat', computerChoice);
+        showResult('Bat', computerChoice, resultMsg);
+        updateButtonColor(this, resultMsg);
+    ">Bat
+    </button>
+
+    <button id="ballButton" class="btn ball-btn" onclick="
+        computerChoice = generateComputerChoice();
+        resultMsg = getResult('Ball', computerChoice);
+        showResult('Ball', computerChoice, resultMsg);
+        updateButtonColor(this, resultMsg);
+    ">Ball</button>
+
+    <button id="stumpButton" class="btn stump-btn" onclick="
+        computerChoice = generateComputerChoice();
+        resultMsg = getResult('Stump', computerChoice);
+        showResult('Stump', computerChoice, resultMsg);
+        updateButtonColor(this, resultMsg);
+    ">Stump</button>
+
+    <script>
+        let score = {
+            win: 0,
+            lost: 0,
+            tie: 0,
+        };
+
+        function generateComputerChoice() {
+            let randomNumber = Math.random() * 3;
+            if (randomNumber > 0 && randomNumber <= 1) {
+                return 'Bat';
+            } else if (randomNumber > 1 && randomNumber <= 2) {
+                return 'Ball';
+            } else {
+                return 'Stump';
+            }
+        }
+
+        function getResult(userMove, computerMove) {
+            if (userMove === 'Bat') {
+                if (computerMove === 'Ball') {
+                    score.win++;
+                    return 'User Won.';
+                } else if (computerMove === 'Bat') {
+                    score.tie++;
+                    return 'The match is tie';
+                } else if (computerMove === 'Stump') {
+                    score.lost++;
+                    return 'Computer has Won';
+                }
+            } else if (userMove === 'Ball') {
+                if (computerMove === 'Ball') {
+                    score.tie++;
+                    return 'Match is tie';
+                } else if (computerMove === 'Bat') {
+                    score.lost++;
+                    return 'Computer has Won';
+                } else if (computerMove === 'Stump') {
+                    score.win++;
+                    return 'User Won';
+                }
+            } else if (userMove === 'Stump') {
+                if (computerMove === 'Ball') {
+                    score.lost++;
+                    return 'Computer has Won';
+                } else if (computerMove === 'Bat') {
+                    score.win++;
+                    return 'User  Won';
+                } else if (computerMove === 'Stump') {
+                    score.tie++;
+                    return 'Match is tie';
+                }
+            }
+        }
+
+        function showResult(userMove, computerMove, result) {
+            console.log(score);
+            alert(`You have chosen ${userMove}, and the computer chose ${computerMove}, and ${result}`);
+        }
+
+        function updateButtonColor(button, result) {
+            if (result.includes('Won')) {
+                button.style.backgroundColor = '#4CAF50'; // Green color for victory
+            } else if (result.includes('tie')) {
+                button.style.backgroundColor = '#FFD700'; // Gold color for tie
+            } else {
+                button.style.backgroundColor = '#FF0000'; // Red color for loss
+            }
+        }
+    </script>
+</body>
+</html>
+ 
+
